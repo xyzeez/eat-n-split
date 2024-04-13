@@ -5,7 +5,7 @@ import Friend from './friend';
 import AddForm from './addForm';
 import Button from './button';
 
-const Sidebar = ({ AddFormHandler, friends }) => {
+const Sidebar = ({ toSplit, splitIdHandler, AddFormHandler, friends }) => {
   const [toAdd, setToAdd] = useState(false);
 
   const handleToAdd = () => {
@@ -17,6 +17,9 @@ const Sidebar = ({ AddFormHandler, friends }) => {
       <ul>
         {friends.map((friend) => (
           <Friend
+            toSplit={toSplit}
+            splitIdHandler={splitIdHandler}
+            id={friend.id}
             img={friend.image}
             name={friend.name}
             bal={friend.balance}
@@ -33,10 +36,3 @@ const Sidebar = ({ AddFormHandler, friends }) => {
 };
 
 export default Sidebar;
-
-// {
-//     id: 499476,
-//     name: 'Anthony',
-//     image: 'https://i.pravatar.cc/48?u=499476',
-//     balance: 0,
-//   },

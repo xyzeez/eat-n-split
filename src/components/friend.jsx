@@ -1,27 +1,22 @@
 import Button from './button';
 
-const Friend = ({ img, name, bal }) => {
+const Friend = ({ toSplit, splitIdHandler, id, img, name, bal }) => {
   return (
-    <li>
+    <li className={toSplit === id ? 'selected' : ''}>
       <img src={img} alt={name} />
       <h3>{name}</h3>
       <p className={bal < 0 ? 'red' : bal > 0 ? 'green' : ''}>
         {bal < 0
-          ? `You owe ${name} ${Math.abs(bal)}`
+          ? `You owe ${name} $${Math.abs(bal)}`
           : bal > 0
-          ? `${name} owes you ${bal}`
+          ? `${name} owes you $${bal}`
           : `You and ${name} are even`}
       </p>
-      <Button>select</Button>
+      <Button clickHandler={() => splitIdHandler(id)}>
+        {toSplit === id ? 'close' : 'select'}
+      </Button>
     </li>
   );
 };
 
 export default Friend;
-
-// {
-//     id: 499476,
-//     name: 'Anthony',
-//     image: 'https://i.pravatar.cc/48?u=499476',
-//     balance: 0,
-//   },

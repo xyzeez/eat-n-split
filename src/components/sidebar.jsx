@@ -8,6 +8,10 @@ import Button from './button';
 const Sidebar = ({ toSplit, splitIdHandler, AddFormHandler, friends }) => {
   const [toAdd, setToAdd] = useState(false);
 
+  const resetToAdd = () => {
+    setToAdd(false);
+  };
+
   const handleToAdd = () => {
     setToAdd(!toAdd);
   };
@@ -27,7 +31,9 @@ const Sidebar = ({ toSplit, splitIdHandler, AddFormHandler, friends }) => {
           />
         ))}
       </ul>
-      {toAdd && <AddForm formHandler={AddFormHandler} />}
+      {toAdd && (
+        <AddForm toAddHandler={resetToAdd} formHandler={AddFormHandler} />
+      )}
       <Button clickHandler={handleToAdd}>
         {toAdd ? 'close' : 'add friend'}
       </Button>

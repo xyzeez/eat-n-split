@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from './button';
 
-const AddForm = ({ formHandler }) => {
+const AddForm = ({ toAddHandler, formHandler }) => {
   const [name, setName] = useState('');
   const [image, setImage] = useState('https://i.pravatar.cc/48');
 
@@ -18,6 +18,8 @@ const AddForm = ({ formHandler }) => {
     formHandler(newFriend);
 
     resetState();
+
+    toAddHandler();
   };
 
   return (

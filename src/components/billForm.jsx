@@ -6,8 +6,8 @@ const BillForm = ({ splitID, splitIdHandler, friends, formHandler }) => {
 
   const [bill, setBill] = useState('');
   const [userBill, setUserBill] = useState('');
-  const [friendBill, setFriendBill] = useState('');
   const [payer, setPayer] = useState('user');
+  const friendBill = bill ? bill - userBill : '';
 
   const handleSetBill = (e) => {
     setBill(Number(e.target.value));
@@ -17,13 +17,6 @@ const BillForm = ({ splitID, splitIdHandler, friends, formHandler }) => {
     const value = Number(e.target.value);
 
     if (value >= 0 && value <= bill) setUserBill(value);
-
-    handleSetFriendBill();
-  };
-
-  const handleSetFriendBill = () => {
-    const value = bill - userBill;
-    setFriendBill(value);
   };
 
   const handleSetPayer = (e) => {
@@ -31,9 +24,8 @@ const BillForm = ({ splitID, splitIdHandler, friends, formHandler }) => {
   };
 
   const resetState = () => {
-    setBill('');
-    setUserBill('');
-    setFriendBill('');
+    setBill();
+    setUserBill();
     setPayer('user');
   };
 
@@ -55,7 +47,13 @@ const BillForm = ({ splitID, splitIdHandler, friends, formHandler }) => {
       <h2>split a bill with {friend.name}</h2>
 
       <label htmlFor="bill">💰 Bill value</label>
-      <input type="text" name="bill" id="bill" onChange={handleSetBill} />
+      <input
+        type="text"
+        name="bill"
+        id="bill"
+        value={bill}
+        onChange={(e) => handleSetBill(e)}
+      />
 
       <label htmlFor="expenseA">🧍‍♂️ Your expense</label>
       <input
@@ -63,7 +61,7 @@ const BillForm = ({ splitID, splitIdHandler, friends, formHandler }) => {
         name="expenseA"
         id="expenseA"
         value={userBill}
-        onChange={handleSetUserBill}
+        onChange={(e) => handleSetUserBill(e)}
       />
 
       <label htmlFor="expenseB">🧑‍🤝‍🧑 {friend.name} expense</label>

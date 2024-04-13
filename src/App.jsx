@@ -6,12 +6,18 @@ import BillForm from './components/billForm';
 
 // variables
 import initialFriends from './utils';
-const friendsList = [...initialFriends];
+import { useState } from 'react';
 
 const App = () => {
+  const [friends, setFriends] = useState(initialFriends);
+
+  const handleNewFriends = (newFriend) => {
+    setFriends((fiends) => [...friends, newFriend]);
+  };
+
   return (
     <main className="app">
-      <Sidebar friends={friendsList} />
+      <Sidebar AddFormHandler={handleNewFriends} friends={friends} />
       <BillForm />
     </main>
   );

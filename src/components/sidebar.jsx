@@ -5,7 +5,7 @@ import Friend from './friend';
 import AddForm from './addForm';
 import Button from './button';
 
-const Sidebar = ({ friends }) => {
+const Sidebar = ({ AddFormHandler, friends }) => {
   const [toAdd, setToAdd] = useState(false);
 
   const handleToAdd = () => {
@@ -24,7 +24,7 @@ const Sidebar = ({ friends }) => {
           />
         ))}
       </ul>
-      {toAdd && <AddForm formHandler={() => {}} />}
+      {toAdd && <AddForm formHandler={AddFormHandler} />}
       <Button clickHandler={handleToAdd}>
         {toAdd ? 'close' : 'add friend'}
       </Button>

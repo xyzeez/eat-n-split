@@ -46,6 +46,7 @@ const App = () => {
           splitIdHandler={resetSplitID}
           friends={friends}
           formHandler={updateFriendData}
+          key={toSplitID}
         />
       )}
     </main>
